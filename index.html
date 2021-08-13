@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hứng trứng</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="icon" href="image/iconegg.png">
+<script src="data.js"></script>
+<style>
+    form {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 50px;
+        margin-bottom: auto;
+        background-image: url('image/Screenshot\ \(24\).png');
+        background-repeat: no-repeat;
+        background-size: 480 720;
+        border-radius: 2%;
+    }
+
+    form {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 50px;
+        margin-bottom: auto;
+        background-color: rgba(128, 128, 128, 0.363);
+    }
+
+    body {
+        background-color: rgb(58, 57, 57);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <form id="Form" style="height: 720px; width: 480px;">
+            <h1
+                style="font-family: monospace; color: white;font-size: 37px;text-align: center; position: relative;top: 40px;">
+                Game hứng trứng</h1>
+            <h3 style="font-family: monospace; color:yellow ; font-size: 20px;position: relative;left: 7px;margin-top: 70px;"
+                id="result"></h3>
+            <img src="image/menu-button.png" alt="" width="100px" style="margin-top: 30%;margin-left:38%"
+                onclick="display()">
+            <div class="card text-center" style="margin-top: 15%;display: none;" id='menu'>
+                <div class="card-header">
+                    Cách chơi
+                </div>
+                <div class="card-body" style="background-color: rgba(63, 164, 211, 0.363);">
+                    <p class="card-text">sử dụng 2 phím mũi tên: (⬅,➡) trên bàn phím để di chuyển rổ sao cho hứng được
+                        trứng, khi hứng trượt sẽ thua cuộc </p>
+                    <hr>
+                    <button type="button" class="btn btn-success" style="width:200px" onclick="play()">Chơi
+                        ngay</button>
+                    <hr>
+                    <p class="card-text" style="color: red;text-align: left;">giá trị: </p>
+                    <div style="text-align:left;"><img src="image/egg.png" alt="" width="30px" height="40px">
+                        <span class="card-text">: </span><span class="card-text" style="color: green;">1 điểm </span>
+                        &emsp;
+                        <img src="image/iconegg.png" alt="" width="30px" height="40px">
+                        <span class="card-text">: </span><span class="card-text" style="color: green;">5 điểm</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    function Result() {
+        let score = loadData(SCORE);
+        document.getElementById('result').innerText = 'Điểm của bạn: ' + score
+    }
+    function play() {
+        window.location.href = 'main.html'
+    }
+    let now = 'none'
+    function display() {
+        if (now == 'none') {
+            now = 'block'
+        } else if (now == 'block') {
+            now = 'none';
+        }
+        document.getElementById('menu').style.display = now;
+    }
+    Result()
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"></script>
+
+</html>
