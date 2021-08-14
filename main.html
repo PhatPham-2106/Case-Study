@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <title>hứng trứng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<link rel="icon" href="image/iconegg.png">
+<script src="data.js"></script>
+<script src="game.js"></script>
+<script src="egg.js">//nhúng egg.js</script>
+<script src="basket.js"></script>
+<style>
+    canvas {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-top: 50px;
+        margin-bottom: auto;
+        background-image: url('image/background.jpg');
+        background-repeat: no-repeat;
+        background-size: 480 720;
+        border-radius: 2%;
+    }
+
+    body {
+        background-color: rgb(58, 57, 57);
+    }
+
+    span {
+        color: white;
+        position: absolute;
+        left: 38%;
+        top: 7%;
+        background-color: rgba(8, 185, 185, 0.438);
+        padding: 12px;
+        border-radius: 7%;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    button {
+        margin-left: 8px;
+        padding: 12px;
+        position: absolute;
+        left: 42.5%;
+        top: 7%;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        height: 46px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td><b><span id="score">Score: 0</span></b></td>
+            </tr>
+            <tr>
+                <button type="button" class="btn btn-outline-warning" onclick='exit()'>Exit</button>
+            </tr>
+        </table>
+
+        <img src="image/hen3-removebg-preview.png" alt="" width=70px style="position: absolute; left: 1100px;top: 616px;">
+        <img src="image/chicken.png" alt="" width=70px style="position: absolute; left: 760px;top: 665px;">
+        <canvas id="Canvas" width="480px" height="720px">
+        </canvas>
+    </div>
+
+    <script>
+        let paper = document.getElementById('Canvas')
+        let eggs = []
+        let game = new Game()
+        let speed = 10;
+        let button=new Audio()
+        button.src='audio/button-3.mp3'
+        function main() {
+            game.clearScreen(paper)
+            game.moveEggs()
+            game.checkCrash()
+            game.displayEggs()
+            game.checkout()
+            game.createBasket(paper)
+            setSpeed()
+            checkLose()
+        }
+        function checkLose() {
+            if (game.checkCrash() == false) {
+                saveData(SCORE, game.score)
+                window.location.reload()
+                window.location.href = 'index.html'
+            }
+        }
+        function even(evt) {
+            if (evt.key == 'ArrowLeft') {
+                game.moveLeft()
+            } if (evt.key == 'ArrowRight') {
+                game.moveRight()
+            }
+            return;
+        }
+        function setSpeed() {
+            if (game.score == 2) {
+                return;
+            }
+            else if (game.score % 15 == 0) {
+                speed -= 2;
+            }
+            else if (game.score >50) {
+                speed = 4;
+            }
+        }
+        function exit() {
+            button.play()
+            window.location.href = 'index.html'
+        }
+        window.addEventListener('keydown', even)
+        game.createEgg(1)
+        setInterval(main, speed);
+    </script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</html>
